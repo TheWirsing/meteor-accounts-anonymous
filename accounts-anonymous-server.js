@@ -24,7 +24,7 @@ AccountsAnonymous._onAbandonedHook = new Hook({
   debugPrintExceptions: 'AccountsAnonymous.onAbandoned callback',
 })
 
-AccountsAnonymous.onAbandoned = (func) => this._onAbandonedHook.register(func)
+AccountsAnonymous.onAbandoned = (func) => AccountsAnonymous._onAbandonedHook.register(func)
 
 const callbackSet = {
   onSwitch(attemptingUser /* , attempt (unused) */) {
