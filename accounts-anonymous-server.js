@@ -6,7 +6,7 @@ import AccountsAddService from './accounts-add-service-server.js'
 
 function isAnonymous(user) {
   // A user is anonymous if they don't have any services other than "resume"
-  return (user.services && user.services?.length === 1 && user.services.resume)
+  return (user.services && user.services.resume)
 }
 
 Accounts.registerLoginHandler('anonymous', (options) => {
@@ -23,7 +23,6 @@ AccountsAnonymous._onAbandonedHook = new Hook({
   bindEnvironment: false,
   debugPrintExceptions: 'AccountsAnonymous.onAbandoned callback',
 })
-
 AccountsAnonymous.onAbandoned = (func) => AccountsAnonymous._onAbandonedHook.register(func)
 
 const callbackSet = {
