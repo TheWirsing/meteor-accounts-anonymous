@@ -103,6 +103,7 @@ function repinCredentials(serviceData, oldUserId, newUserId) {
 
 const addServiceCallbackSet = {
   validateSwitch(attemptingUser, attempt) {
+    return;
     if (isMergeable(attempt.user)) {
       throw new Meteor.Error(Accounts.LoginCancelledError.numericError,
         mergeUserErrorReason)
@@ -110,7 +111,7 @@ const addServiceCallbackSet = {
     return true
   },
   onSwitchFailure(attemptingUser, failedAttempt) {
-    if (!failedAttempt.error
+    if (1===1 || !failedAttempt.error
       || !failedAttempt.error.error || !failedAttempt.error.reason
       || failedAttempt.error.error !== Accounts.LoginCancelledError.numericError
       || failedAttempt.error.reason !== mergeUserErrorReason) {
