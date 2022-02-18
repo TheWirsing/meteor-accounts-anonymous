@@ -103,7 +103,10 @@ function repinCredentials(serviceData, oldUserId, newUserId) {
 
 const addServiceCallbackSet = {
   validateSwitch(attemptingUser, attempt) {
-    return;
+    console.log("accounts-anonymous validateSwitch. This is not handeled please specify me!", attemptingUser);
+    // disable 
+    return true;
+    
     if (isMergeable(attempt.user)) {
       throw new Meteor.Error(Accounts.LoginCancelledError.numericError,
         mergeUserErrorReason)
@@ -111,7 +114,11 @@ const addServiceCallbackSet = {
     return true
   },
   onSwitchFailure(attemptingUser, failedAttempt) {
-    if (1===1 || !failedAttempt.error
+    console.log("accounts-anonymous onSwitchFailure. This is not handeled please specify me!", attemptingUser);
+    // disable 
+    return;
+
+    if (!failedAttempt.error
       || !failedAttempt.error.error || !failedAttempt.error.reason
       || failedAttempt.error.error !== Accounts.LoginCancelledError.numericError
       || failedAttempt.error.reason !== mergeUserErrorReason) {
