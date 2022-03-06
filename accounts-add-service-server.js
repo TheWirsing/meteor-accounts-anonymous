@@ -103,10 +103,6 @@ function repinCredentials(serviceData, oldUserId, newUserId) {
 
 const addServiceCallbackSet = {
   validateSwitch(attemptingUser, attempt) {
-    console.log("accounts-anonymous validateSwitch. This is not handeled please specify me!", attemptingUser);
-    // disable 
-    return true;
-    
     if (isMergeable(attempt.user)) {
       throw new Meteor.Error(Accounts.LoginCancelledError.numericError,
         mergeUserErrorReason)
@@ -114,10 +110,6 @@ const addServiceCallbackSet = {
     return true
   },
   onSwitchFailure(attemptingUser, failedAttempt) {
-    console.log("accounts-anonymous onSwitchFailure. This is not handeled please specify me!", attemptingUser);
-    // disable 
-    return;
-
     if (!failedAttempt.error
       || !failedAttempt.error.error || !failedAttempt.error.reason
       || failedAttempt.error.error !== Accounts.LoginCancelledError.numericError
@@ -139,7 +131,7 @@ const addServiceCallbackSet = {
     Object.entries(serviceData).forEach((value, key) => {
       setAttrs[`services.${serviceName}.${key}`] = value
     })
-
+console.log("xxx", failedAttempt);
     // Non-destructively merge profile properties
     const attemptingProfile = attemptingUser.profile || {}
     let attemptProfile = failedAttempt.user.profile

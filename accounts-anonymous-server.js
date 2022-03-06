@@ -38,7 +38,8 @@ const callbackSet = {
 
 AccountsAnonymous.init = () => {
   AccountsMultiple.register(callbackSet)
-  AccountsAddService._init()
+  //disable switch service as it is buggy in packages/meteor-accounts-anonymous/accounts-add-service-server.js:138
+  //AccountsAddService._init()
 }
 
 export { AccountsAnonymous }
